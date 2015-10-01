@@ -3,6 +3,7 @@ function Thermostat() {
   this.MIN_TEMP = 10;
   this.maxTemp = 25;
   this.powerSavingMode = true;
+  this.colour = 'yellow'
 }
 
 Thermostat.prototype.up = function() {
@@ -11,6 +12,7 @@ Thermostat.prototype.up = function() {
   } else {
     throw ("Cannot exceed the maximum temperature");
   }
+  this.setColour();
 };
 
 Thermostat.prototype.down = function() {
@@ -19,16 +21,19 @@ Thermostat.prototype.down = function() {
     } else {
       throw ("Minimum temperature reached");
     }
+    this.setColour();
   };
 
 Thermostat.prototype.powerSavingOff = function() {
   this.maxTemp = 32;
   this.powerSavingMode = false;
+  this.setColour();
 };
 
 Thermostat.prototype.powerSavingOn = function() {
   this.maxTemp = 25;
   this.powerSavingMode = true;
+  this.setColour();
 };
 
 Thermostat.prototype.powerSavingChange = function() {
@@ -43,25 +48,27 @@ Thermostat.prototype.powerSavingChange = function() {
     this.powerSavingMode = false;
     this.maxTemp = 32;
   }
+  this.setColour();
 };
 
 Thermostat.prototype.reset = function() {
   this.temp = 20;
+  this.setColour();
   if (this.powerSavingMode === false) {
     this.powerSavingMode = true;
     document.getElementById("psm").checked = true;
   }
 };
 
-Thermostat.prototype.energyRating = function() {
+Thermostat.prototype.setColour = function() {
   if (this.temp < 18) {
-    return "low-usage";
+    this.colour = 'green';
   }
   else if (this.temp < 25) {
-    return "medium-usage";
+    this.colour = 'yellow';
   }
   else {
-    return "high-usage";
+    this.colour = 'red';
   }
 };
 

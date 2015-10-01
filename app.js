@@ -7,25 +7,26 @@ $(document).ready (function() {
   $( '#up' ).click(function( event ) {
     thermostat.up();
     $( '#temp' ).text(thermostat.temp);
+    $( '#temp' ).css("color", thermostat.colour);
   });
 
   $( '#down' ).click(function( event ) {
     thermostat.down();
     $( '#temp' ).text(thermostat.temp);
+    $( '#temp' ).css("color", thermostat.colour);
   });
 
   $( '#psm' ).click(function( event ) {
     thermostat.powerSavingChange();
     $( '#temp' ).text(thermostat.temp);
+    $( '#temp' ).css("color", thermostat.colour);
   });
 
   $( '#reset' ).click(function( event ) {
-    // if (thermostat.powerSavingState() === false) {
-    //   $( '#psm' ).prop("checked", true);
-    //   thermostat.powerSavingChange();
-    // }
     thermostat.reset();
     $( '#temp' ).text(thermostat.temp);
+    $( '#temp' ).css("color", thermostat.colour);
   });
+
 
 });

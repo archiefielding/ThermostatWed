@@ -89,15 +89,18 @@ describe("reflects energy usage with a rating", function() {
     });
 
     it("less than 18 degrees is considered low usage", function() {
-      thermostat.temp = 17;
-      expect(thermostat.energyRating()).toBe("low-usage");
+      thermostat.temp = 16;
+      thermostat.up();
+      expect(thermostat.colour).toEqual("green");
     });
     it("less than 25 degrees is considered medium usage", function() {
-      thermostat.temp = 24;
-      expect(thermostat.energyRating()).toBe("medium-usage");
+      thermostat.temp = 23;
+      thermostat.up();
+      expect(thermostat.colour).toEqual("yellow");
     });
     it("25 and over is considered high usage", function() {
-      thermostat.temp = 31;
-      expect(thermostat.energyRating()).toBe("high-usage");
+      thermostat.temp = 24;
+      thermostat.up();
+      expect(thermostat.colour).toEqual("red");
     });
 });
