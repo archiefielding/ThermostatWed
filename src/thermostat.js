@@ -31,8 +31,26 @@ Thermostat.prototype.powerSavingOn = function() {
   this.powerSavingMode = true;
 };
 
+Thermostat.prototype.powerSavingChange = function() {
+  if (this.powerSavingMode === false) {
+    this.powerSavingMode = true;
+    this.maxTemp = 25;
+    if (this.temp > 25) {
+      this.temp = 25;
+    }
+  }
+  else {
+    this.powerSavingMode = false;
+    this.maxTemp = 32;
+  }
+};
+
 Thermostat.prototype.reset = function() {
   this.temp = 20;
+  if (this.powerSavingMode === false) {
+    this.powerSavingMode = true;
+    document.getElementById("psm").checked = true;
+  }
 };
 
 Thermostat.prototype.energyRating = function() {
@@ -46,4 +64,10 @@ Thermostat.prototype.energyRating = function() {
     return "high-usage";
   }
 };
+
+Thermostat.prototype.powerSavingState = function() {
+  this.powerSavingMode
+};
+
+
 var thermostat = new Thermostat();

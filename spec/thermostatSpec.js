@@ -56,6 +56,13 @@ describe("Thermostat", function() {
     expect(thermostat.maxTemp).toBe(32);
   });
 
+  it("can be switched between power saving modes with one method", function() {
+    thermostat.powerSavingChange();
+    expect(thermostat.maxTemp).toBe(32);
+    thermostat.powerSavingChange();
+    expect(thermostat.maxTemp).toBe(25);
+  });
+
   it("temperature cannot exceed maximum of 25 degrees in power saving mode", function() {
     thermostat.powerSavingOn();
     thermostat.temp = 25;
